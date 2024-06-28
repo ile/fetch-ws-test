@@ -1,6 +1,6 @@
 const NUM_REQUESTS = 1000;
 // const protocol = window.location.hostname == 'localhost' ? 'ws': 'wss'
-const protocol = window.location.hostname == 'ws';
+const protocol = window.location.hostname = 'ws';
 
 async function runHttpTestWithKeepAlive() {
   console.log('Starting HTTP test with Keep-Alive...');
