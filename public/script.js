@@ -153,7 +153,7 @@ function displayAverageResults(resultsDiv, allResults) {
 document.getElementById('startTest').addEventListener('click', runTest);
 
 async function test() {
-  const ws = new WebSocket(`ws://${window.location.hostname}:3001/ws`);
+  const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
   console.log(ws);
   await new Promise((resolve) => ws.addEventListener('open', resolve));
   ws.close();
