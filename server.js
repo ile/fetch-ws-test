@@ -4,14 +4,14 @@ import { WebSocketServer } from 'ws';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
+const PORT = 3000;
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 const server = createServer(app);
-const wss = new WebSocketServer({ server });
-
-const PORT = 3000;
+const wss = new WebSocketServer({ port: PORT, path: "/ws" });
 
 app.use(express.static(join(__dirname, 'public')));
 
