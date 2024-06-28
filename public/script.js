@@ -41,7 +41,7 @@ async function runHttpTestWithoutKeepAlive() {
 async function runWebSocketTest() {
   console.log('Starting WebSocket test...');
   const startTime = performance.now();
-  const ws = new WebSocket(`ws://${window.location.host}`);
+  const ws = new WebSocket(`wss://${window.location.host}`);
   await new Promise((resolve) => ws.addEventListener('open', resolve));
 
   const times = [];
