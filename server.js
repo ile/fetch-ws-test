@@ -28,6 +28,7 @@ app.get('/http-no-keep-alive', (req, res) => {
 });
 
 wss.on('connection', (ws) => {
+  console.log('connection');
   ws.on('message', (message) => {
     ws.send(JSON.stringify({ message: 'Hello from WebSocket! ' + Date.now() }));
   });
