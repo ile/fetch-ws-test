@@ -1,4 +1,4 @@
-const NUM_REQUESTS = 1000;
+const NUM_REQUESTS = 100;
 // const protocol = window.location.hostname == 'localhost' ? 'ws': 'wss'
 const protocol = 'ws';
 
