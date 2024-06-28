@@ -86,13 +86,13 @@ async function runTest() {
     resultsDiv.textContent += `\nRun ${run + 1}:\n`;
 
     // Warm-up
-    for (let i = 0; i < WARM_UP_REQUESTS; i++) {
-      await fetch('/http-keep-alive');
-      await fetch('/http-no-keep-alive');
-      const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
-      await new Promise((resolve) => ws.addEventListener('open', resolve));
-      ws.close();
-    }
+    // for (let i = 0; i < WARM_UP_REQUESTS; i++) {
+    //   await fetch('/http-keep-alive');
+    //   await fetch('/http-no-keep-alive');
+    //   const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
+    //   await new Promise((resolve) => ws.addEventListener('open', resolve));
+    //   ws.close();
+    // }
 
     const httpTimesWithKeepAlive = await runHttpTestWithKeepAlive();
     const httpTimesWithoutKeepAlive = await runHttpTestWithoutKeepAlive();
