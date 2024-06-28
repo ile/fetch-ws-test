@@ -79,7 +79,7 @@ function calculateStats(times) {
 }
 
 async function runTest() {
-  const NUM_RUNS = 5;
+  const NUM_RUNS = 2;
   const WARM_UP_REQUESTS = 10;
   const resultsDiv = document.getElementById('results');
 
