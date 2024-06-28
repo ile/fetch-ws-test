@@ -1,4 +1,4 @@
-const NUM_REQUESTS = 100;
+const NUM_REQUESTS = 1000;
 // const protocol = window.location.hostname == 'localhost' ? 'ws': 'wss'
 const protocol = 'ws';
 
@@ -155,12 +155,10 @@ document.getElementById('startTest').addEventListener('click', runTest);
 
 async function test() {
   const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
-  console.log('ws', ws);
-  await new Promise((resolve) => ws.addEventListener('open', () => {
-    console.log('open');
-    ws.close();
-    resolve();
-  }));  
+  console.log(ws);
+  await new Promise((resolve) => ws.addEventListener('open', resolve));
+  console.log('...open');
+  ws.close();
 }
 
 test();
