@@ -1,4 +1,5 @@
 const NUM_REQUESTS = 1000;
+const protocol = window.location.hostname == 'localhost' ? 'ws': 'wss'
 
 async function runHttpTestWithKeepAlive() {
   console.log('Starting HTTP test with Keep-Alive...');
@@ -41,7 +42,8 @@ async function runHttpTestWithoutKeepAlive() {
 async function runWebSocketTest() {
   console.log('Starting WebSocket test...');
   const startTime = performance.now();
-  const ws = new WebSocket(`wss://${window.location.host}`);
+  
+  const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
   await new Promise((resolve) => ws.addEventListener('open', resolve));
 
   const times = [];
@@ -86,7 +88,7 @@ async function runTest() {
     for (let i = 0; i < WARM_UP_REQUESTS; i++) {
       await fetch('/http-keep-alive');
       await fetch('/http-no-keep-alive');
-      const ws = new WebSocket(`wss://${window.location.host}`);
+      const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
       await new Promise((resolve) => ws.addEventListener('open', resolve));
       ws.close();
     }
@@ -149,3 +151,12 @@ function displayAverageResults(resultsDiv, allResults) {
   }
 }
 document.getElementById('startTest').addEventListener('click', runTest);
+
+async function test() {
+  const ws = new WebSocket(`ws://${window.location.hostname}:3001/ws`);
+  console.log(ws);
+  await new Promise((resolve) => ws.addEventListener('open', resolve));
+  ws.close();
+}
+
+test();
