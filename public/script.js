@@ -27,7 +27,12 @@ async function runHttpTestWithoutKeepAlive() {
   const times = [];
   for (let i = 0; i < NUM_REQUESTS; i++) {
     const reqStartTime = performance.now();
-    await fetch('/http-no-keep-alive');
+    await fetch(`/http-no-keep-alive?nocache=${Date.now()}`, {
+      cache: 'no-store',
+      headers: {
+        'Pragma': 'no-cache'
+      }
+    });
     const reqEndTime = performance.now();
     times.push(reqEndTime - reqStartTime);
   }
@@ -43,7 +48,7 @@ async function runHttpTestWithoutKeepAlive() {
 async function runWebSocketTest() {
   console.log('Starting WebSocket test...');
   const startTime = performance.now();
-  
+
   const ws = new WebSocket(`${protocol}://${window.location.hostname}:3001/ws`);
   await new Promise((resolve) => ws.addEventListener('open', resolve));
 
