@@ -86,7 +86,7 @@ async function runTest() {
     for (let i = 0; i < WARM_UP_REQUESTS; i++) {
       await fetch('/http-keep-alive');
       await fetch('/http-no-keep-alive');
-      const ws = new WebSocket(`ws://${window.location.host}`);
+      const ws = new WebSocket(`wss://${window.location.host}`);
       await new Promise((resolve) => ws.addEventListener('open', resolve));
       ws.close();
     }
